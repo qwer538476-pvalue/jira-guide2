@@ -394,6 +394,7 @@
     border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 14px;
     position: relative; padding-left: 56px;
   }
+  .req-card.resolved { border-color: var(--teal); }
   .req-num {
     position: absolute; left: 18px; top: 18px;
     width: 28px; height: 28px; border-radius: 50%;
@@ -401,6 +402,7 @@
     font-size: 13px; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
   }
+  .req-card.resolved .req-num { background: var(--teal); }
   .req-q { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 10px; line-height: 1.5; }
   .req-row { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
   .req-row:last-child { margin-bottom: 0; }
@@ -415,6 +417,51 @@
     background: var(--amber-light); padding: 3px 10px; border-radius: 20px; margin-top: 10px;
   }
   .req-status::before { content: '●'; font-size: 8px; }
+  .req-status.done { color: var(--teal); background: var(--teal-light); }
+
+  .reply-box {
+    background: var(--teal-light); border: 1px solid #ABF5D1;
+    border-radius: var(--radius); padding: 12px 14px; margin-top: 10px;
+  }
+  .reply-box .reply-label {
+    font-size: 10px; font-weight: 700; color: var(--teal); text-transform: uppercase;
+    letter-spacing: 0.4px; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+  }
+  .reply-box .reply-text { font-size: 13px; color: var(--gray-900); line-height: 1.65; }
+  .reply-box .reply-text strong { color: var(--teal); }
+  .reply-box ul { margin: 6px 0 0 18px; padding: 0; }
+  .reply-box li { font-size: 13px; color: var(--gray-900); line-height: 1.7; }
+
+  /* 미니 화면 재현 (Team 드롭다운 / Custom filters) */
+  .mini-screen {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; margin-top: 10px; background: var(--white);
+  }
+  .mini-screen-label {
+    background: var(--gray-50); padding: 6px 12px; font-size: 11px; font-weight: 700;
+    color: var(--gray-500); border-bottom: 1px solid var(--border);
+  }
+  .mini-screen-body { padding: 14px; }
+  .mini-field-label { font-size: 11px; font-weight: 700; color: var(--gray-700); margin-bottom: 6px; }
+  .mini-input {
+    border: 1.5px solid var(--blue-mid); border-radius: 4px; padding: 6px 10px;
+    font-size: 12.5px; color: var(--gray-700); margin-bottom: 4px; display:flex; align-items:center; gap:6px;
+  }
+  .mini-dropdown-item {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+    background: var(--gray-50); border-radius: 4px; margin-top: 2px;
+  }
+  .mini-dropdown-item .mdi-icon {
+    width: 26px; height: 26px; border-radius: 6px; background: var(--purple-light); color: var(--purple);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;
+  }
+  .mini-dropdown-item .mdi-text { font-size: 12.5px; color: var(--gray-900); font-weight: 600; }
+  .mini-dropdown-item .mdi-sub { font-size: 11px; color: var(--gray-300); }
+  .mini-filter-row {
+    display: flex; align-items: center; gap: 8px; padding: 7px 0; font-size: 12.5px; color: var(--gray-700);
+  }
+  .mini-filter-row .mfchk { width: 14px; height: 14px; border: 1.5px solid var(--blue); border-radius: 3px; flex-shrink: 0; background: var(--blue); color: white; display:flex; align-items:center; justify-content:center; font-size: 9px; }
+  .mini-filter-row.unchecked .mfchk { background: white; border-color: var(--gray-300); }
 
   /* 운영 규칙 리스트 */
   .rule-list { margin-top: 16px; }
@@ -905,48 +952,84 @@
   <div class="section" id="requests">
     <div class="section-eyebrow">Part 7</div>
     <div class="section-title">전략실 확인 요청 사항</div>
-    <div class="section-sub">교육 자리에서 개발팀에 직접 요청한 3가지 사항 — 개발팀이 확인 후 메일로 회신 예정</div>
+    <div class="section-sub">교육 자리에서 개발팀에 직접 요청한 3가지 사항 — 2026-06-24 개발팀(오준식, 플랫폼개발부문 프론트개발팀) 회신 완료</div>
 
-    <div class="req-card">
+    <div class="req-card resolved">
       <div class="req-num">1</div>
       <div class="req-q">전략실 내부에 팀 만들기 권한 가능 여부</div>
       <div class="req-row">
         <div class="req-row-label">이유</div>
         <div class="req-row-text">전략실 내부에 여러 하위 조직(팀)이 있어, 업무 영역별로 구분해서 관리할 필요가 있는데 현재는 전략실 전체가 하나의 공간으로 통합되어 있어 분리가 필요합니다.</div>
       </div>
-      <div class="req-row">
-        <div class="req-row-label">현재상태</div>
-        <div class="req-row-text">교육 중 즉답이 어려워, 개발팀이 권한 확인 후 회신하기로 함</div>
+      <div class="reply-box">
+        <div class="reply-label">✅ 개발팀 회신 (6/24)</div>
+        <div class="reply-text"><strong>전략기획팀 · DB저작권팀 · 통합멤버십팀</strong> 3팀을 신설했습니다. 이슈 등록 시 <strong>Team 항목</strong>에 해당하는 팀을 설정하면 됩니다.</div>
+        <div class="mini-screen">
+          <div class="mini-screen-label">이슈 상세 화면 — Details · Team</div>
+          <div class="mini-screen-body">
+            <div class="mini-field-label">Team</div>
+            <div class="mini-input">🔍 전략</div>
+            <div class="mini-dropdown-item">
+              <div class="mdi-icon">👥</div>
+              <div>
+                <div class="mdi-text">전략기획팀</div>
+                <div class="mdi-sub">Team · 3 members</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="req-status">회신 대기 중</div>
+      <div class="req-status done">✅ 회신 완료</div>
     </div>
 
-    <div class="req-card">
+    <div class="req-card resolved">
       <div class="req-num">2</div>
+      <div class="req-q">팀별 이슈 필터링 방법 <span style="font-weight:400; color:var(--gray-500);">(1번 요청에 대한 부가 안내)</span></div>
+      <div class="reply-box">
+        <div class="reply-label">✅ 개발팀 회신 (6/24)</div>
+        <div class="reply-text">보드 상단의 <strong>Custom filters</strong>에서 팀별 이슈만 골라 볼 수 있습니다. 필터는 ①이슈의 Team 항목이 설정된 경우, 또는 ②담당자의 소속이 해당 팀인 경우 기준으로 보여집니다.</div>
+        <div class="mini-screen">
+          <div class="mini-screen-label">보드 화면 — Custom filters</div>
+          <div class="mini-screen-body">
+            <div class="mini-filter-row"><span class="mfchk">✓</span> 전략기획팀</div>
+            <div class="mini-filter-row unchecked"><span class="mfchk"></span> DB저작권팀</div>
+            <div class="mini-filter-row unchecked"><span class="mfchk"></span> 통합멤버십팀</div>
+          </div>
+        </div>
+      </div>
+      <div class="req-status done">✅ 회신 완료</div>
+    </div>
+
+    <div class="req-card resolved">
+      <div class="req-num">3</div>
       <div class="req-q">티켓 삭제 권한을 전략실 팀장 단위로만 부여 가능한지</div>
       <div class="req-row">
         <div class="req-row-label">이유</div>
         <div class="req-row-text">불필요하거나 잘못 생성된 테스트성 티켓을 정리할 권한이 필요한데, 전원에게 권한을 부여하면 오남용 우려가 있어 팀장 단위로 제한된 권한 부여를 원합니다.</div>
       </div>
-      <div class="req-row">
-        <div class="req-row-label">현재상태</div>
-        <div class="req-row-text">개발팀이 가능 여부 확인 후 회신하기로 함</div>
+      <div class="reply-box">
+        <div class="reply-label">✅ 개발팀 회신 (6/24)</div>
+        <div class="reply-text"><strong>김민성 부문장 및 각 부·팀장</strong>에게 이슈 삭제 권한을 추가했습니다. 이슈 상세 화면의 <strong>더보기(···) 메뉴</strong>에서 삭제를 확인할 수 있습니다.</div>
       </div>
-      <div class="req-status">회신 대기 중</div>
+      <div class="req-status done">✅ 회신 완료</div>
     </div>
 
-    <div class="req-card">
-      <div class="req-num">3</div>
+    <div class="req-card resolved">
+      <div class="req-num">4</div>
       <div class="req-q">할일→진행중→검토중→완료 상태 변경 권한을 팀 전원이 가지는 게 맞는지</div>
       <div class="req-row">
         <div class="req-row-label">이유</div>
         <div class="req-row-text">요청자가 아닌 사람이 임의로 상태를 변경하거나, 작업 중인 티켓이 실수로 되돌려지는 등의 혼선을 막기 위해 권한 범위를 명확히 하고자 합니다.</div>
       </div>
-      <div class="req-row">
-        <div class="req-row-label">1차의견</div>
-        <div class="req-row-text">권한을 세분화하는 기능 자체가 Jira(지라)에 없는 것으로 확인됨 → 일단 "담당자만 변경" 룰을 권장하나, 이는 확정 답변이 아니며 추가 확인 후 정식 회신 예정</div>
+      <div class="reply-box">
+        <div class="reply-label">✅ 개발팀 회신 (6/24)</div>
+        <div class="reply-text">플랫폼개발부문 내 지라 권한 관리자와 논의한 결과, <strong>상태 변경 권한은 별도로 제한하지 않기로 결정</strong>했습니다. 담당자가 중간에 바뀌거나 타 부문 인원이 담당으로 지정되는 경우가 있어, 제한하면 오히려 더 불편할 수 있다는 판단입니다. 플랫폼개발부문에서도 실제 사용 중 비슷한 불편을 겪은 사례가 있었습니다.</div>
       </div>
-      <div class="req-status">회신 대기 중</div>
+      <div class="req-status done">✅ 회신 완료</div>
+    </div>
+
+    <div class="tip-box">
+      <strong>📮 향후 문의·소통 채널:</strong> 전략실 지라 사용 중 기타 문의나 요청사항은 <strong>오준식(플랫폼개발부문 프론트개발팀)</strong>에게 이메일 또는 팀즈로 편하게 연락하면 됩니다. 확인하는 대로 피드백을 준다고 안내받았습니다.
     </div>
   </div>
 
@@ -960,10 +1043,10 @@
 
     <div class="action-timeline">
       <div class="action-item">
-        <div class="action-dot"></div>
+        <div class="action-dot" style="background:var(--teal);"></div>
         <div class="action-text">
-          <strong>확인 요청 사항 3건 회신</strong> — 팀 만들기 권한, 티켓 삭제 권한, 상태 변경 권한 범위에 대한 정식 답변
-          <div class="action-date">개발팀 → 메일 회신 예정</div>
+          <strong>✅ 확인 요청 사항 4건 회신 완료</strong> — 팀 만들기 권한, 팀별 필터링, 티켓 삭제 권한, 상태 변경 권한 범위에 대한 정식 답변
+          <div class="action-date">개발팀(오준식) → 2026-06-24 회신 완료</div>
         </div>
       </div>
       <div class="action-item">
